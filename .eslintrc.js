@@ -22,7 +22,13 @@ module.exports = {
         singleQuote: true,
         printWidth: 100,
       },
+      {
+        usePrettierrc: false,
+        fileInfoOptions: {
+          withNodeModules: true,
+        },
+      },
     ],
   },
-  plugins: ['prettier'],
+  plugins: ['prettier', 'prettier/react'],
 };

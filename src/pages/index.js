@@ -1,4 +1,6 @@
-/* eslint-disable import/prefer-default-export */
-import Splash from './Splash';
+// @flow
 
-export {Splash};
+import Splash from './Splash';
+import GetStarted from './GetStarted';
+
+export {Splash, GetStarted};

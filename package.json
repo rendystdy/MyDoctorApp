@@ -7,14 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint .",
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "lint": "eslint ."
   },
   "dependencies": {
     "react": "16.11.0",
@@ -37,7 +30,7 @@
     "jest": "^26.0.1",
     "lint-staged": "^10.2.10",
     "metro-react-native-babel-preset": "^0.59.0",
-    "prettier": "^2.0.5",
+    "prettier": "2.0.5",
     "react-native-svg-transformer": "^0.14.3",
     "react-test-renderer": "16.11.0"
   },
