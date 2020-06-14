@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import { FontsType } from '../../../utils/Fonts';
 
 type Props = {
   title: String,
@@ -29,6 +30,6 @@ const styles = StyleSheet.create({
     color: type === 'secondary' ? '#112340' : '#fff',
     textAlign: 'center',
     fontSize: 18,
-    fontWeight: '600',
+    fontFamily: FontsType.semiBold
   }),
 });

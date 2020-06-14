@@ -3,8 +3,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILLogo, ILGetStarted} from '../../assets';
-import {Button} from '../../components/atoms';
+import {Button, Gap} from '../../components/atoms';
 import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
+import { FontsType } from '../../utils/Fonts';
 
 const GetStarted = () => {
   return (
@@ -17,7 +18,7 @@ const GetStarted = () => {
       </View>
       <View>
         <Button title="Get Started" />
-        <View style={styles.customHeights(16)} />
+        <Gap height={16} />
         <Button title="Sign In" type="secondary" />
       </View>
     </ImageBackground>
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
     marginTop: 91,
+    fontFamily: FontsType.semiBold
   },
   customHeights: (value) => ({
     height: value

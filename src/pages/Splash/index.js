@@ -2,6 +2,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILLogo} from '../../assets';
+import { FontsType } from '../../utils/Fonts';
 
 const Splash = () => {
   return (
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
   container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
   title: {
     fontSize: 20,
-    fontWeight: '600',
+    fontFamily: FontsType.semiBold,
     color: '#112340',
     marginTop: 20,
   },
