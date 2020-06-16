@@ -1,10 +1,19 @@
+// @flow
+
 /* eslint-disable no-use-before-define */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILLogo} from '../../assets';
-import { FontsType } from '../../utils/Fonts';
+import {FontsType} from '../../utils/Fonts';
+import {ROUTE_NAME} from '../../router';
 
-const Splash = () => {
+const Splash = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace(ROUTE_NAME.GET_STARTED);
+    }, 3000);
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <ILLogo />

@@ -1,19 +1,20 @@
 // @flow
 
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import { FontsType } from '../../../utils/Fonts';
 
 type Props = {
   title: String,
   type: String,
+  onPress: Function
 };
 
-const Button = ({type, title}: Props) => {
+const Button = ({type, title, onPress}: Props) => {
   return (
-    <View style={styles.container(type)}>
+    <TouchableOpacity style={styles.container(type)} onPress={onPress}>
       <Text style={styles.title(type)}>{title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -2,12 +2,19 @@
 
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {NavigationProp} from '@react-navigation/native'
+
 import {ILLogo, ILGetStarted} from '../../assets';
 import {Button, Gap} from '../../components/atoms';
 import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
 import { FontsType } from '../../utils/Fonts';
+import { ROUTE_NAME } from '../../router';
 
-const GetStarted = () => {
+type Props = {
+  navigation: NavigationProp
+}
+
+const GetStarted = ({navigation}: Props) => {
   return (
     <ImageBackground source={ILGetStarted} style={styles.pages}>
       <View>
@@ -17,9 +24,13 @@ const GetStarted = () => {
         </Text>
       </View>
       <View>
-        <Button title="Get Started" />
+        <Button title="Get Started" onPress={() => {
+          navigation.navigate(ROUTE_NAME.REGISTER)
+        }} />
         <Gap height={16} />
-        <Button title="Sign In" type="secondary" />
+        <Button title="Sign In" type="secondary" onPress={() => {
+          navigation.navigate(ROUTE_NAME.LOGIN)
+        }} />
       </View>
     </ImageBackground>
   );
