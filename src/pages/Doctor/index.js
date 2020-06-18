@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
   secondary: {
     backgroundColor: Colors.WHITE,
     flex: 1,
-    // paddingHorizontal: rw(16),
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
   },
