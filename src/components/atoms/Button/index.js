@@ -3,17 +3,25 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import { FontsType } from '../../../utils/Fonts';
+import { ICArrowBack } from '../../../assets';
+import IconOnly from './IconOnly';
+import { Colors } from '../../../utils/Colors';
 
 type Props = {
   title: String,
   type: String,
-  onPress: Function
+  onPress: Function,
+  icon: String,
+  disabled: Boolean
 };
 
-const Button = ({type, title, onPress}: Props) => {
+const Button = ({type, title, onPress, icon, disabled}: Props) => {
+  if (type === 'icon-only') {
+    return <IconOnly icon={icon} onPress={onPress} />
+  }
   return (
-    <TouchableOpacity style={styles.container(type)} onPress={onPress}>
-      <Text style={styles.title(type)}>{title}</Text>
+    <TouchableOpacity style={styles.container(type, disabled)} onPress={onPress} disabled={disabled}>
+      <Text style={styles.title(type, disabled)}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -21,14 +29,14 @@ const Button = ({type, title, onPress}: Props) => {
 export default Button;
 
 const styles = StyleSheet.create({
-  container: (type) => ({
-    backgroundColor: type === 'secondary' ? '#fff' : '#0BCAD4',
+  container: (type, disabled) => ({
+    backgroundColor: type === 'secondary' ? Colors.WHITE : disabled ? Colors.LIGHT_GRAYISH_BLUE : Colors.STRONG_CYAN,
     paddingVertical: 10,
     alignItems: 'center',
     borderRadius: 10,
   }),
-  title: (type) => ({
-    color: type === 'secondary' ? '#112340' : '#fff',
+  title: (type, disabled) => ({
+    color: type === 'secondary' ? Colors.VERY_DARK_BLUE : disabled ? Colors.GRAYISH_BLUE : Colors.WHITE,
     textAlign: 'center',
     fontSize: 18,
     fontFamily: FontsType.semiBold

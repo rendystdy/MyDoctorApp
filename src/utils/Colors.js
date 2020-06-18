@@ -1,0 +1,9 @@
+export const Colors = {
+  VERY_LIGHT_GRAY: 'rgb(233,233,233)',
+  WHITE: 'rgb(255,255,255)',
+  VERY_DARK_BLUE: 'rgb(17,35,64)',
+  DARK_GRAYISH_BLUE: 'rgb(125,135,151)',
+  LIGHT_GRAYISH_BLUE: 'rgb(237,238,240)',
+  STRONG_CYAN: 'rgb(11,202,212)',
+  GRAYISH_BLUE: 'rgb(177,183,194)'
+};

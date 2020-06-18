@@ -6,6 +6,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {ILLogo} from '../../assets';
 import {FontsType} from '../../utils/Fonts';
 import {ROUTE_NAME} from '../../router';
+import { Colors } from '../../utils/Colors';
 
 const Splash = ({navigation}) => {
   useEffect(() => {
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontFamily: FontsType.semiBold,
-    color: '#112340',
+    color: Colors.VERY_DARK_BLUE,
     marginTop: 20,
   },
 });

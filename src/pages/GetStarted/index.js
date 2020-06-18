@@ -9,6 +9,7 @@ import {Button, Gap} from '../../components/atoms';
 import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
 import { FontsType } from '../../utils/Fonts';
 import { ROUTE_NAME } from '../../router';
+import { Colors } from '../../utils/Colors';
 
 type Props = {
   navigation: NavigationProp
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    color: '#fff',
+    color: Colors.WHITE,
     fontWeight: '600',
     marginTop: 91,
     fontFamily: FontsType.semiBold

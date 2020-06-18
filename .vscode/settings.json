@@ -9,5 +9,6 @@
     "lebih",
     "mudah",
     "precommit"
-  ]
+  ],
+  "eslint.format.enable": true
 }

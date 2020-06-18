@@ -1,34 +1,20 @@
 module.exports = {
   root: true,
-  extends: [
-    'airbnb',
-    'prettier',
-    'prettier/react',
-    'plugin:prettier/recommended',
-    'eslint-config-prettier',
-  ],
+  extends: '@react-native-community',
   rules: {
-    'import/no-unresolved': 'off',
-    'react/jsx-filename-extension': [
-      1,
-      {
-        extensions: ['.js', '.jsx'],
-      },
-    ],
-    'prettier/prettier': [
+    'no-console': 'error',
+    'comma-dangle': [
       'error',
       {
-        trailingComma: 'es5',
-        singleQuote: true,
-        printWidth: 100,
-      },
-      {
-        usePrettierrc: false,
-        fileInfoOptions: {
-          withNodeModules: true,
-        },
+        arrays: 'only-multiline',
+        objects: 'only-multiline',
+        imports: 'only-multiline',
+        exports: 'never',
+        functions: 'never',
       },
     ],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-unused-declaration': true,
   },
-  plugins: ['prettier', 'prettier/react'],
 };
