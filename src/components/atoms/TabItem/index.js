@@ -44,7 +44,6 @@ const TabItem = ({title, isFocused, onPress, onLongPress}: Props) => {
         return isFocused ? <ICDoctorActive /> : <ICDoctorInactive />;
     }
   };
-  console.log(isFocused);
 
   return (
     <TouchableOpacity

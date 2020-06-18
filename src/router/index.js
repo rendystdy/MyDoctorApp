@@ -41,8 +41,7 @@ export const ROUTE_NAME = {
 //       ? options.headerTitle
 //       : options.title !== undefined
 //       ? options.title
-//       : scene.route.name;
-//   console.log({scene, previous, navigation});
+//       : scene.route.name;å
 
 //   return (
 //     <MyHeader
