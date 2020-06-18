@@ -1,5 +1,8 @@
+// @flow
+
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
 
 import {ILLogo} from '../../assets/illustration';
 import {Input, Link, Button, Gap} from '../../components';
@@ -10,8 +13,13 @@ import {
   responsiveWidth as rw,
   responsiveHeight as rh,
 } from '../../utils/Responsive';
+import {ROUTE_NAME} from '../../router';
 
-const Login = () => {
+type Props = {
+  navigation: NavigationProp,
+};
+
+const Login = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
       <ILLogo />
@@ -22,7 +30,10 @@ const Login = () => {
       <Gap height={10} />
       <Link label="Forgot My Password" fontSize={12} />
       <Gap height={40} />
-      <Button title="Sign In" />
+      <Button
+        title="Sign In"
+        onPress={() => navigation.replace(ROUTE_NAME.MAIN_APP)}
+      />
       <Gap height={30} />
       <Link label="Create New Account" fontSize={16} textAlign="center" />
     </View>
