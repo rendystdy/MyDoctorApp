@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {DummyUser} from '../../../assets';
 import {
   responsiveHeight as rh,
@@ -11,17 +11,19 @@ import {
 import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
 
-type Props = {};
+type Props = {
+  onPress: Function,
+};
 
-const HomeProfile = ({}: Props) => {
+const HomeProfile = ({onPress}: Props) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={DummyUser} style={styles.image} />
       <View>
         <Text style={styles.name}>Shayna Melinda</Text>
         <Text style={styles.job}>Product Designer</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

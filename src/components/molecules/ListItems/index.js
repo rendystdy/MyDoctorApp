@@ -2,7 +2,14 @@
 
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, Image, View} from 'react-native';
-import {DummyDokter1, ICChevronRight} from '../../../assets';
+import {
+  DummyDokter1,
+  ICChevronRight,
+  ICAccountCircle,
+  ICLanguage,
+  ICRatedOutline,
+  ICHelp,
+} from '../../../assets';
 import {
   responsiveHeight as rh,
   responsiveWidth as rw,
@@ -18,12 +25,33 @@ type Props = {
   images: String,
   type: String,
   onPress: Function,
+  icon: String,
 };
 
-const ListDoctorItem = ({name, desc, images, type, onPress}) => {
+const ListItems = ({name, desc, images, type, onPress, icon}) => {
+  const listIcon = {
+    EDIT_PROFILE: 'edit-profile',
+    LANGUAGE: 'language',
+    RATED: 'rated',
+    HELP: 'help',
+  };
+  const Icon = () => {
+    switch (icon) {
+      case listIcon.EDIT_PROFILE:
+        return <ICAccountCircle style={styles.icon} />;
+      case listIcon.LANGUAGE:
+        return <ICLanguage style={styles.icon} />;
+      case listIcon.RATED:
+        return <ICRatedOutline style={styles.icon} />;
+      case listIcon.HELP:
+        return <ICHelp style={styles.icon} />;
+      default:
+        return;
+    }
+  };
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Image source={images} style={styles.image} />
+      {icon ? <Icon /> : <Image source={images} style={styles.image} />}
       <View style={styles.content}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.chat}>{desc}</Text>
@@ -33,7 +61,7 @@ const ListDoctorItem = ({name, desc, images, type, onPress}) => {
   );
 };
 
-export default ListDoctorItem;
+export default ListItems;
 
 const styles = StyleSheet.create({
   container: {
@@ -64,5 +92,8 @@ const styles = StyleSheet.create({
     color: Colors.DARK_GRAYISH_BLUE,
     fontFamily: FontsType.light,
     lineHeight: 16,
+  },
+  icon: {
+    marginRight: rw(16),
   },
 });

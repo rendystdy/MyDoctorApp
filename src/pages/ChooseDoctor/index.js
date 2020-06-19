@@ -4,7 +4,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 
-import {Header, ListDoctorItem} from '../../components';
+import {Header, ListItems} from '../../components';
 import {
   DummyDokter4,
   DummyDokter5,
@@ -27,35 +27,35 @@ const ChooseDoctor = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
       <Header type="dark" title="Pilih Dokter Anak" onPress={goBack} />
-      <ListDoctorItem
+      <ListItems
         images={DummyDokter4}
         desc="Wanita"
         name="Alexander Jannie"
         type="next"
         onPress={handleChooseDoctor}
       />
-      <ListDoctorItem
+      <ListItems
         images={DummyDokter5}
         desc="Wanita"
         name="John McParker Steve"
         type="next"
         onPress={handleChooseDoctor}
       />
-      <ListDoctorItem
+      <ListItems
         images={DummyDokter6}
         desc="Wanita"
         name="Nairobi Putri Hayza"
         type="next"
         onPress={handleChooseDoctor}
       />
-      <ListDoctorItem
+      <ListItems
         images={DummyDokter7}
         desc="Wanita"
         name="James Rivillia"
         type="next"
         onPress={handleChooseDoctor}
       />
-      <ListDoctorItem
+      <ListItems
         images={DummyDokter8}
         desc="Wanita"
         name="Liu Yue Tian Park"

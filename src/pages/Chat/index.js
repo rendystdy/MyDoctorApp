@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
 
 import {Header, ChatItems, InputChat} from '../../components';
 import {FontsType} from '../../utils/Fonts';
@@ -13,12 +14,18 @@ import {
   responsiveBorderRadius as rbr,
 } from '../../utils/Responsive';
 
-type Props = {};
+type Props = {
+  navigation: NavigationProp,
+};
 
-const Chat = ({}: Props) => {
+const Chat = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
-      <Header type="dark-profile" title="Nairobi Putri Hayza" />
+      <Header
+        type="dark-profile"
+        title="Nairobi Putri Hayza"
+        onPress={() => navigation.goBack()}
+      />
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={styles.chatDate}>Senin, 21 Maret, 2020</Text>

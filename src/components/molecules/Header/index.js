@@ -23,7 +23,7 @@ type Props = {
 
 const Header = ({title, onPress, type}: Props) => {
   if (type === 'dark-profile') {
-    return <DarkProfile />;
+    return <DarkProfile onPress={onPress} />;
   }
 
   return (

@@ -12,6 +12,10 @@ import ICChevronRight from './chevron_right_24px_outlined.svg';
 import ICArrowBackLight from './arrow_back_light.svg';
 import ICSend from './send_24px.svg';
 import ICSendInactive from './send_inactive_24px.svg';
+import ICLanguage from './translate_24px_outlined.svg';
+import ICHelp from './description_24px_outlined.svg';
+import ICRatedOutline from './star_outline_24px_outlined.svg';
+import ICAccountCircle from './account_circle_24px_outlined.svg';
 
 export {
   ICArrowBack,
@@ -28,4 +32,8 @@ export {
   ICArrowBackLight,
   ICSend,
   ICSendInactive,
+  ICLanguage,
+  ICHelp,
+  ICRatedOutline,
+  ICAccountCircle,
 };

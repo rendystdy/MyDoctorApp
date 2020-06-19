@@ -3,7 +3,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 
-import {ListDoctorItem} from '../../components/molecules';
+import {ListItems} from '../../components';
 import {
   responsiveWidth as rw,
   responsiveHeight as rh,
@@ -44,7 +44,7 @@ const Messages = ({}: Props) => {
           <Text style={styles.title}>Messages</Text>
           {doctors.map((item) => {
             return (
-              <ListDoctorItem
+              <ListItems
                 key={item.id}
                 name={item.name}
                 desc={item.desc}
