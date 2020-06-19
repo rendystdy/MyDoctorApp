@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
-import {DummyDokter1} from '../../../assets';
+import {StyleSheet, Text, TouchableOpacity, Image, View} from 'react-native';
+import {DummyDokter1, ICChevronRight} from '../../../assets';
 import {
   responsiveHeight as rh,
   responsiveWidth as rw,
@@ -12,17 +12,24 @@ import {
 import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
 
-const ListDoctorItem = () => {
+type Props = {
+  name: String,
+  desc: String,
+  images: String,
+  type: String,
+  onPress: Function,
+};
+
+const ListDoctorItem = ({name, desc, images, type, onPress}) => {
   return (
-    <View style={styles.container}>
-      <Image source={DummyDokter1} style={styles.image} />
-      <View>
-        <Text style={styles.name}>Alexander Jannie</Text>
-        <Text style={styles.chat}>
-          Baik ibu, terima kasih banyak atas wakt...
-        </Text>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
+      <Image source={images} style={styles.image} />
+      <View style={styles.content}>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.chat}>{desc}</Text>
       </View>
-    </View>
+      {type === 'next' && <ICChevronRight />}
+    </TouchableOpacity>
   );
 };
 
@@ -35,6 +42,10 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.VERY_LIGHT_GRAY,
     padding: 16,
     alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  content: {
+    flex: 1,
   },
   image: {
     width: rw(46),

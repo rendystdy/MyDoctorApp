@@ -2,7 +2,6 @@
 
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
-import {DummyThumbnail1} from '../../../assets';
 import {
   responsiveBorderRadius as rbr,
   responsiveWidth as rw,
@@ -12,16 +11,21 @@ import {
 import {FontsType} from '../../../utils/Fonts';
 import {Colors} from '../../../utils/Colors';
 
-type Props = {};
+type Props = {
+  title: String,
+  name: String,
+  address: String,
+  images: String,
+};
 
-const ListHospitals = ({}: Props) => {
+const ListHospitals = ({title, name, address, images}: Props) => {
   return (
     <View style={styles.container}>
-      <Image source={DummyThumbnail1} style={styles.images} />
+      <Image source={images} style={styles.images} />
       <View>
-        <Text style={styles.title}>Rumah Sakit</Text>
-        <Text style={styles.title}>Citra Bunga Merdeka</Text>
-        <Text style={styles.desc}>Jln. Surya Sejahtera 20</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.desc}>{address}</Text>
       </View>
     </View>
   );

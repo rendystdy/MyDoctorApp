@@ -17,18 +17,19 @@ import {Gap, Button} from '../../atoms';
 
 type Props = {
   title: String,
-  onPress: Function
+  onPress: Function,
+  type: String,
 };
 
-const Header = ({title, onPress}: Props) => {
+const Header = ({title, onPress, type}: Props) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container(type)}>
       <Button
         type="icon-only"
-        icon="arrow-back"
+        icon={type === 'dark' ? 'arrow-back-light' : 'arrow-back-dark'}
         onPress={onPress}
       />
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title(type)}>{title}</Text>
       <Gap width={24} />
     </View>
   );
@@ -37,18 +38,20 @@ const Header = ({title, onPress}: Props) => {
 export default Header;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'transparent',
+  container: (type) => ({
+    backgroundColor: type === 'dark' ? Colors.VERY_DARK_BLUE : 'transparent',
     flexDirection: 'row',
     paddingHorizontal: rw(16),
     paddingVertical: rh(30),
     alignItems: 'center',
-  },
-  title: {
+    borderBottomLeftRadius: type === 'dark' ? 20 : 0,
+    borderBottomRightRadius: type === 'dark' ? 20 : 0,
+  }),
+  title: (type) => ({
     textAlign: 'center',
     fontFamily: FontsType.semiBold,
     fontSize: rf(20),
-    color: Colors.VERY_DARK_BLUE,
+    color: type === 'dark' ? Colors.WHITE : Colors.VERY_DARK_BLUE,
     flex: 1,
-  },
+  }),
 });

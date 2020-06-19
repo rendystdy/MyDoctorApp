@@ -1,7 +1,14 @@
+// @flow
+
 import React from 'react';
 import {StyleSheet, Text, View, ImageBackground} from 'react-native';
 
-import {ILBGHospitals} from '../../assets';
+import {
+  ILBGHospitals,
+  DummyThumbnail1,
+  DummyThumbnail2,
+  DummyThumbnail3,
+} from '../../assets';
 import {
   responsiveWidth as rw,
   responsiveHeight as rh,
@@ -20,9 +27,24 @@ const Hospitals = () => {
         <Text style={styles.desc}>3 tersedia</Text>
       </ImageBackground>
       <View style={styles.content}>
-        <ListHospitals />
-        <ListHospitals />
-        <ListHospitals />
+        <ListHospitals
+          title="Rumah Sakit"
+          name="Citra Bunga Merdeka"
+          address="Jln. Surya Sejahtera 20"
+          images={DummyThumbnail1}
+        />
+        <ListHospitals
+          title="Rumah Sakit"
+          name="Happy Family & Kids"
+          address="Jln. Surya Sejahtera 20"
+          images={DummyThumbnail2}
+        />
+        <ListHospitals
+          title="Rumah Sakit"
+          name="Tingkatan Paling Atas"
+          address="Jln. Surya Sejahtera 20"
+          images={DummyThumbnail3}
+        />
       </View>
     </View>
   );

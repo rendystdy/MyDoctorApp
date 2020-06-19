@@ -1,7 +1,8 @@
 // @flow
 
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
+
 import {ListDoctorItem} from '../../components/molecules';
 import {
   responsiveWidth as rw,
@@ -10,18 +11,47 @@ import {
 } from '../../utils/Responsive';
 import {Colors} from '../../utils/Colors';
 import {FontsType} from '../../utils/Fonts';
+import {DummyDokter1, DummyDokter2, DummyDokter3} from '../../assets';
 
 type Props = {};
 
 const Messages = ({}: Props) => {
+  const [doctors, setDoctors] = useState([
+    {
+      id: 1,
+      name: 'Alexander Jannie',
+      desc: 'Baik ibu, terima kasih banyak atas wakt...',
+      images: DummyDokter1,
+    },
+    {
+      id: 2,
+      name: 'Nairobi Putri Hayza',
+      desc: 'Oh tentu saja tidak karena jeruk it...',
+      images: DummyDokter2,
+    },
+    {
+      id: 3,
+      name: 'John McParker Steve',
+      desc: 'Oke menurut pak dokter bagaimana unt...',
+      images: DummyDokter3,
+    },
+  ]);
+
   return (
     <View style={styles.container}>
       <View style={styles.secondaryContainer}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={styles.title}>Messages</Text>
-          <ListDoctorItem />
-          <ListDoctorItem />
-          <ListDoctorItem />
+          {doctors.map((item) => {
+            return (
+              <ListDoctorItem
+                key={item.id}
+                name={item.name}
+                desc={item.desc}
+                images={item.images}
+              />
+            );
+          })}
         </ScrollView>
       </View>
     </View>

@@ -1,7 +1,9 @@
 // @flow
 
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View, FlatList, ScrollView} from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
+
 import {
   HomeProfile,
   DoctorCategory,
@@ -16,10 +18,18 @@ import {
 } from '../../utils/Responsive';
 import {FontsType} from '../../utils/Fonts';
 import {Colors} from '../../utils/Colors';
+import {JSONCategoryDoctor} from '../../assets';
+import {ROUTE_NAME} from '../../router';
 
-const dataCategory = [{id: 1}, {id: 2}, {id: 3}, {id: 4}];
+type Props = {
+  navigation: NavigationProp,
+};
 
-const Doctor = () => {
+const Doctor = ({navigation}: Props) => {
+  const handleChooseDoctor = () => {
+    navigation.navigate(ROUTE_NAME.CHOOSE_DOCTOR);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.secondary}>
@@ -34,10 +44,15 @@ const Doctor = () => {
               <FlatList
                 contentContainerStyle={styles.contentContainerCategory}
                 showsHorizontalScrollIndicator={false}
-                data={dataCategory}
+                data={JSONCategoryDoctor.data}
                 horizontal
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({item}) => <DoctorCategory {...item} />}
+                renderItem={({item}) => (
+                  <DoctorCategory
+                    category={item.category}
+                    onPress={handleChooseDoctor}
+                  />
+                )}
               />
             </View>
           </View>

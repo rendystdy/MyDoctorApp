@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {ILCatUmum} from '../../../assets';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {ILCatUmum, ILCatPsikiater, ILCatObat, ILCatAnak} from '../../../assets';
 import {
   responsiveWidth as rw,
   responsiveFontValue as rf,
@@ -12,15 +12,32 @@ import {
 import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
 
-type Props = {};
+type Props = {
+  category: String,
+  onPress: Function,
+};
 
-const DoctorCategory = ({}: Props) => {
+const DoctorCategory = ({category, onPress}: Props) => {
+  const Icon = () => {
+    switch (category) {
+      case 'dokter umum':
+        return <ILCatUmum style={styles.illustration} />;
+      case 'psikiater':
+        return <ILCatPsikiater style={styles.illustration} />;
+      case 'dokter obat':
+        return <ILCatObat style={styles.illustration} />;
+      case 'dokter anak':
+        return <ILCatAnak style={styles.illustration} />;
+      default:
+        return <ILCatUmum style={styles.illustration} />;
+    }
+  };
   return (
-    <View style={styles.container}>
-      <ILCatUmum style={styles.illustration} />
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Icon />
       <Text style={styles.label}>Saya butuh</Text>
-      <Text style={styles.category}>dokter umum</Text>
-    </View>
+      <Text style={styles.category}>{category}</Text>
+    </TouchableOpacity>
   );
 };
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {ICArrowBack} from '../../../assets';
+import {ICArrowBack, ICArrowBackLight} from '../../../assets';
 
 type Props = {
   onPress: Function,
@@ -12,13 +12,18 @@ type Props = {
 const IconOnly = ({onPress, icon}) => {
   const Icon = () => {
     const listIcon = {
-      ICArrowBack: 'arrow-back',
+      ICArrowBackDark: 'arrow-back-dark',
+      ICArrowBackLight: 'arrow-back-light',
     };
-    if (icon === listIcon.ICArrowBack) {
-      return <ICArrowBack />;
-    }
 
-    return <ICArrowBack />
+    switch (icon) {
+      case listIcon.ICArrowBackDark:
+        return <ICArrowBack />;
+      case listIcon.ICArrowBackLight:
+        return <ICArrowBackLight />;
+      default:
+        return <ICArrowBack />;
+    }
   };
 
   return (

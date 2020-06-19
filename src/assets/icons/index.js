@@ -8,6 +8,8 @@ import ICHospitalsActive from './map_active_24px.svg';
 import ICMessagesInactive from './textsms_24px.svg';
 import ICMessagesActive from './textsms_active_24px.svg';
 import ICStarRated from './star_rate_18px.svg';
+import ICChevronRight from './chevron_right_24px_outlined.svg';
+import ICArrowBackLight from './arrow_back_light.svg';
 
 export {
   ICArrowBack,
@@ -20,4 +22,6 @@ export {
   ICHospitalsActive,
   ICHospitalsInactive,
   ICStarRated,
+  ICChevronRight,
+  ICArrowBackLight,
 };
