@@ -9,6 +9,7 @@ import Doctor from './Doctor';
 import Messages from './Messages';
 import Hospitals from './Hospitals';
 import ChooseDoctor from './ChooseDoctor';
+import Chat from './Chat';
 
 export {
   Splash,
@@ -20,4 +21,5 @@ export {
   Messages,
   Hospitals,
   ChooseDoctor,
+  Chat,
 };

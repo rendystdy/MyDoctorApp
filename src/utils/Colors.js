@@ -8,4 +8,5 @@ export const Colors = {
   GRAYISH_BLUE: 'rgb(177,183,194)',
   MOSTLY_DESATURATED_DARK_BLUE: 'rgb(73,90,117)',
   LIGHT_GRAYISH_CYAN: 'rgb(237,252,253)',
+  STRONG_BLUE: 'rgb(0,102,203)',
 };

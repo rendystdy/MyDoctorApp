@@ -2,7 +2,6 @@
 
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
-import {NavigationProp} from '@react-navigation/native';
 
 import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
@@ -14,6 +13,7 @@ import {
 } from '../../../utils/Responsive';
 import {ICArrowBack} from '../../../assets';
 import {Gap, Button} from '../../atoms';
+import DarkProfile from './DarkProfile';
 
 type Props = {
   title: String,
@@ -22,6 +22,10 @@ type Props = {
 };
 
 const Header = ({title, onPress, type}: Props) => {
+  if (type === 'dark-profile') {
+    return <DarkProfile />;
+  }
+
   return (
     <View style={styles.container(type)}>
       <Button

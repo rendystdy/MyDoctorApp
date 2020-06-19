@@ -1,5 +1,9 @@
+// @flow
+
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
+
 import {Header, ListDoctorItem} from '../../components';
 import {
   DummyDokter4,
@@ -9,40 +13,54 @@ import {
   DummyDokter8,
 } from '../../assets';
 import {Colors} from '../../utils/Colors';
+import {ROUTE_NAME} from '../../router';
 
-const ChooseDoctor = () => {
+type Props = {
+  navigation: NavigationProp,
+};
+
+const ChooseDoctor = ({navigation}: Props) => {
+  const handleChooseDoctor = () => {
+    navigation.navigate(ROUTE_NAME.CHAT);
+  };
+  const goBack = () => navigation.goBack();
   return (
     <View style={styles.container}>
-      <Header type="dark" title="Pilih Dokter Anak" />
+      <Header type="dark" title="Pilih Dokter Anak" onPress={goBack} />
       <ListDoctorItem
         images={DummyDokter4}
         desc="Wanita"
         name="Alexander Jannie"
         type="next"
+        onPress={handleChooseDoctor}
       />
       <ListDoctorItem
         images={DummyDokter5}
         desc="Wanita"
         name="John McParker Steve"
         type="next"
+        onPress={handleChooseDoctor}
       />
       <ListDoctorItem
         images={DummyDokter6}
         desc="Wanita"
         name="Nairobi Putri Hayza"
         type="next"
+        onPress={handleChooseDoctor}
       />
       <ListDoctorItem
         images={DummyDokter7}
         desc="Wanita"
         name="James Rivillia"
         type="next"
+        onPress={handleChooseDoctor}
       />
       <ListDoctorItem
         images={DummyDokter8}
         desc="Wanita"
         name="Liu Yue Tian Park"
         type="next"
+        onPress={handleChooseDoctor}
       />
     </View>
   );

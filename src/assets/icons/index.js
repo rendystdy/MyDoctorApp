@@ -10,6 +10,8 @@ import ICMessagesActive from './textsms_active_24px.svg';
 import ICStarRated from './star_rate_18px.svg';
 import ICChevronRight from './chevron_right_24px_outlined.svg';
 import ICArrowBackLight from './arrow_back_light.svg';
+import ICSend from './send_24px.svg';
+import ICSendInactive from './send_inactive_24px.svg';
 
 export {
   ICArrowBack,
@@ -24,4 +26,6 @@ export {
   ICStarRated,
   ICChevronRight,
   ICArrowBackLight,
+  ICSend,
+  ICSendInactive,
 };

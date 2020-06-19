@@ -13,6 +13,7 @@ import {
   Hospitals,
   Messages,
   ChooseDoctor,
+  Chat,
 } from '../pages';
 import {FontsType} from '../utils/Fonts';
 import {responsiveFontValue as rf} from '../utils/Responsive';
@@ -34,6 +35,8 @@ export const ROUTE_NAME = {
   HOSPITALS: 'Hospitals',
   MAIN_APP: 'Main App',
   CHOOSE_DOCTOR: 'Pilih Dokter',
+  CHOOSE_DOCTOR: 'Pilih Dokter',
+  CHAT: 'Chat',
 };
 
 // export const MyHeader = ({scene, previous, navigation}) => {
@@ -115,6 +118,11 @@ const Router = () => {
         name={ROUTE_NAME.CHOOSE_DOCTOR}
         component={ChooseDoctor}
         options={options(ROUTE_NAME.CHOOSE_DOCTOR, false)}
+      />
+      <Stack.Screen
+        name={ROUTE_NAME.CHAT}
+        component={Chat}
+        options={options(ROUTE_NAME.CHAT, false)}
       />
     </Stack.Navigator>
   );
