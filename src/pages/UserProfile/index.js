@@ -6,6 +6,8 @@ import {NavigationProp} from '@react-navigation/native';
 
 import {Header, Profile, ListItems, Gap} from '../../components';
 import {Colors} from '../../utils/Colors';
+import {ROUTE_NAME} from '../../router';
+import {DummyUser} from '../../assets';
 
 type Props = {
   navigation: NavigationProp,
@@ -16,13 +18,18 @@ const UserProfile = ({navigation}) => {
     <View style={styles.container}>
       <Header title="Profile" onPress={() => navigation.goBack()} />
       <Gap height={10} />
-      <Profile />
+      <Profile
+        profile={DummyUser}
+        name="Shayna Melinda"
+        job="Product Designer"
+      />
       <Gap height={14} />
       <ListItems
         type="next"
         name="Edit Profile"
         desc="Last updated yesterday"
         icon="edit-profile"
+        onPress={() => navigation.navigate(ROUTE_NAME.UPDATE_PROFILE)}
       />
       <ListItems
         type="next"

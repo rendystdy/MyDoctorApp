@@ -3,7 +3,12 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 
-import {DummyThumbnail1, DummyUser} from '../../../assets';
+import {
+  DummyThumbnail1,
+  DummyUser,
+  ICRemovePhoto,
+  ICAddPhoto,
+} from '../../../assets';
 import {
   responsiveWidth as rw,
   responsiveHeight as rh,
@@ -13,16 +18,32 @@ import {
 import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
 
-type Props = {};
+type Props = {
+  name: String,
+  job: String,
+  profile: String,
+  icon: String,
+};
 
-const Profile = ({}: Props) => {
+const Profile = ({name, job, profile, icon}: Props) => {
+  const Icon = () => {
+    switch (icon) {
+      case 'remove':
+        return <ICRemovePhoto style={styles.icon} />;
+      case 'add':
+        return <ICAddPhoto style={styles.icon} />;
+      default:
+        return;
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.wrapperAvatar}>
-        <Image source={DummyUser} style={styles.profile} />
+        <Image source={profile} style={styles.profile} />
+        {icon && <Icon />}
       </View>
-      <Text style={styles.name}>Shayna Melinda</Text>
-      <Text style={styles.job}>Product Designer</Text>
+      {name && <Text style={styles.name}>{name}</Text>}
+      {job && <Text style={styles.job}>{job}</Text>}
     </View>
   );
 };
@@ -62,5 +83,10 @@ const styles = StyleSheet.create({
     borderColor: Colors.VERY_LIGHT_GRAY,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  icon: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
   },
 });

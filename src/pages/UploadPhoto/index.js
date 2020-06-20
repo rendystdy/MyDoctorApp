@@ -2,9 +2,9 @@
 
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
-import {Header, Button, Gap} from '../../components';
+import {Header, Button, Gap, Profile} from '../../components';
 import {Colors} from '../../utils/Colors';
-import {ILUserPhotoNull, ICAddPhoto, ICRemovePhoto} from '../../assets';
+import {ILUserPhotoNull, ICRemovePhoto, DummyUser} from '../../assets';
 import {Link} from '../../components';
 import {
   responsiveHeight as rw,
@@ -14,16 +14,15 @@ import {
 } from '../../utils/Responsive';
 import {FontsType} from '../../utils/Fonts';
 
-const UploadPhoto = () => {
+type Props = {};
+
+const UploadPhoto = ({}: Props) => {
   return (
     <View style={styles.container}>
       <Header title="Upload Photo" />
       <View style={styles.content}>
         <View style={styles.sectionOne}>
-          <View style={styles.wrapperAvatar}>
-            <Image source={ILUserPhotoNull} style={styles.avatar} />
-            <ICAddPhoto style={styles.addPhoto} />
-          </View>
+          <Profile icon="add" profile={DummyUser} />
           <Text style={styles.name}>Shayna Melinda</Text>
           <Text style={styles.job}>Product Designer</Text>
         </View>
@@ -50,25 +49,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingBottom: rh(64),
   },
-  wrapperAvatar: {
-    width: rw(130),
-    height: rh(130),
-    borderWidth: 1,
-    borderColor: Colors.VERY_LIGHT_GRAY,
-    borderRadius: rbr(130 / 2),
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  avatar: {
-    width: rw(110),
-    height: rh(110),
-  },
-  addPhoto: {
-    position: 'absolute',
-    bottom: 8,
-    right: 6,
-  },
   name: {
+    marginTop: rh(26),
     fontSize: rf(24),
     fontFamily: FontsType.semiBold,
     color: Colors.VERY_DARK_BLUE,

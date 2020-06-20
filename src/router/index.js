@@ -15,6 +15,7 @@ import {
   ChooseDoctor,
   Chat,
   UserProfile,
+  UpdateProfile,
 } from '../pages';
 import {FontsType} from '../utils/Fonts';
 import {responsiveFontValue as rf} from '../utils/Responsive';
@@ -39,6 +40,7 @@ export const ROUTE_NAME = {
   CHOOSE_DOCTOR: 'Pilih Dokter',
   CHAT: 'Chat',
   USER_PROFILE: 'User Profile',
+  UPDATE_PROFILE: 'Update Profile',
 };
 
 // export const MyHeader = ({scene, previous, navigation}) => {
@@ -85,7 +87,7 @@ const options = (routeName, show) => {
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName={ROUTE_NAME.MAIN_APP}>
+    <Stack.Navigator initialRouteName={ROUTE_NAME.UPLOAD_PHOTO}>
       <Stack.Screen
         name={ROUTE_NAME.SPLASH}
         component={Splash}
@@ -130,6 +132,11 @@ const Router = () => {
         name={ROUTE_NAME.USER_PROFILE}
         component={UserProfile}
         options={options(ROUTE_NAME.USER_PROFILE, false)}
+      />
+      <Stack.Screen
+        name={ROUTE_NAME.UPDATE_PROFILE}
+        component={UpdateProfile}
+        options={options(ROUTE_NAME.UPDATE_PROFILE, false)}
       />
     </Stack.Navigator>
   );
