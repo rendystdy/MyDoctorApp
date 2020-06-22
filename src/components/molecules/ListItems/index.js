@@ -20,15 +20,15 @@ import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
 
 type Props = {
-  name: String,
-  desc: String,
-  images: String,
-  type: String,
+  name?: string,
+  desc?: string,
+  images?: Object,
+  type: string,
   onPress: Function,
-  icon: String,
+  icon?: string,
 };
 
-const ListItems = ({name, desc, images, type, onPress, icon}) => {
+const ListItems = ({name, desc, images, type, onPress, icon}: Props) => {
   const listIcon = {
     EDIT_PROFILE: 'edit-profile',
     LANGUAGE: 'language',
@@ -46,7 +46,7 @@ const ListItems = ({name, desc, images, type, onPress, icon}) => {
       case listIcon.HELP:
         return <ICHelp style={styles.icon} />;
       default:
-        return;
+        return <ICAccountCircle style={styles.icon} />;
     }
   };
   return (
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     borderRadius: rbr(46 / 2),
     marginRight: rw(12),
   },
-  nane: {
+  name: {
     fontSize: rf(16),
     color: Colors.VERY_DARK_BLUE,
     fontFamily: FontsType.regular,

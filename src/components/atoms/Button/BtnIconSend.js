@@ -11,7 +11,7 @@ import {
 } from '../../../utils/Responsive';
 
 type Props = {
-  disabled: String,
+  disabled?: boolean,
 };
 
 const BtnIconSend = ({disabled}: Props) => {
@@ -24,15 +24,19 @@ const BtnIconSend = ({disabled}: Props) => {
 
 export default BtnIconSend;
 
-const styles = StyleSheet.create({
-  container: (disabled) => ({
-    backgroundColor: disabled ? Colors.LIGHT_GRAYISH_BLUE : Colors.STRONG_BLUE,
-    borderRadius: rbr(10),
-    width: rw(45),
-    height: rh(45),
-    paddingTop: 3,
-    paddingRight: 3,
-    paddingBottom: 8,
-    paddingLeft: 8,
-  }),
-});
+const styles = StyleSheet.create(
+  ({
+    container: (disabled) => ({
+      backgroundColor: disabled
+        ? Colors.LIGHT_GRAYISH_BLUE
+        : Colors.STRONG_BLUE,
+      borderRadius: rbr(10),
+      width: rw(45),
+      height: rh(45),
+      paddingTop: 3,
+      paddingRight: 3,
+      paddingBottom: 8,
+      paddingLeft: 8,
+    }),
+  }: Object),
+);

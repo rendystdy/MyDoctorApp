@@ -2,6 +2,7 @@
 
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
 
 import {ListItems} from '../../components';
 import {
@@ -12,10 +13,13 @@ import {
 import {Colors} from '../../utils/Colors';
 import {FontsType} from '../../utils/Fonts';
 import {DummyDokter1, DummyDokter2, DummyDokter3} from '../../assets';
+import {ROUTE_NAME} from '../../router';
 
-type Props = {};
+type Props = {
+  navigation: NavigationProp,
+};
 
-const Messages = ({}: Props) => {
+const Messages = ({navigation}: Props) => {
   const [doctors, setDoctors] = useState([
     {
       id: 1,
@@ -49,6 +53,7 @@ const Messages = ({}: Props) => {
                 name={item.name}
                 desc={item.desc}
                 images={item.images}
+                onPress={() => navigation.navigate(ROUTE_NAME.CHAT)}
               />
             );
           })}

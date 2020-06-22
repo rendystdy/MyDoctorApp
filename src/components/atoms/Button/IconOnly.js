@@ -6,10 +6,10 @@ import {ICArrowBack, ICArrowBackLight} from '../../../assets';
 
 type Props = {
   onPress: Function,
-  icon: String,
+  icon?: string,
 };
 
-const IconOnly = ({onPress, icon}) => {
+const IconOnly = ({onPress, icon}: Props) => {
   const Icon = () => {
     const listIcon = {
       ICArrowBackDark: 'arrow-back-dark',

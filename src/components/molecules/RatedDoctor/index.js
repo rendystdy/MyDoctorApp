@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {DummyDokter1, ICStarRated} from '../../../assets';
 import {Colors} from '../../../utils/Colors';
 import {
@@ -12,16 +12,21 @@ import {
 } from '../../../utils/Responsive';
 import {FontsType} from '../../../utils/Fonts';
 
-type Props = {};
+type Props = {
+  name: String,
+  title: String,
+  onPress: Function,
+  images: String,
+};
 
-const RatedDoctor = ({}: Props) => {
+const RatedDoctor = ({name, title, onPress, images}: Props) => {
   return (
-    <View style={styles.container}>
-      <Image source={DummyDokter1} style={styles.images} />
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Image source={images} style={styles.images} />
       <View style={styles.wrapper}>
         <View>
-          <Text style={styles.name}>Alexa Rachel</Text>
-          <Text style={styles.title}>Pediatrician</Text>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.title}>{title}</Text>
         </View>
       </View>
       <View style={styles.wrapperStarRated}>
@@ -31,7 +36,7 @@ const RatedDoctor = ({}: Props) => {
         <ICStarRated />
         <ICStarRated />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -35,7 +35,12 @@ const Login = ({navigation}: Props) => {
         onPress={() => navigation.replace(ROUTE_NAME.MAIN_APP)}
       />
       <Gap height={30} />
-      <Link label="Create New Account" fontSize={16} textAlign="center" />
+      <Link
+        label="Create New Account"
+        fontSize={16}
+        textAlign="center"
+        onPress={() => navigation.navigate(ROUTE_NAME.REGISTER)}
+      />
     </View>
   );
 };

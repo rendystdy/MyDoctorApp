@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
@@ -16,9 +16,9 @@ import {Gap, Button} from '../../atoms';
 import DarkProfile from './DarkProfile';
 
 type Props = {
-  title: String,
+  title: string,
   onPress: Function,
-  type: String,
+  type: string,
 };
 
 const Header = ({title, onPress, type}: Props) => {
@@ -41,21 +41,23 @@ const Header = ({title, onPress, type}: Props) => {
 
 export default Header;
 
-const styles = StyleSheet.create({
-  container: (type) => ({
-    backgroundColor: type === 'dark' ? Colors.VERY_DARK_BLUE : 'transparent',
-    flexDirection: 'row',
-    paddingHorizontal: rw(16),
-    paddingVertical: rh(30),
-    alignItems: 'center',
-    borderBottomLeftRadius: type === 'dark' ? 20 : 0,
-    borderBottomRightRadius: type === 'dark' ? 20 : 0,
-  }),
-  title: (type) => ({
-    textAlign: 'center',
-    fontFamily: FontsType.semiBold,
-    fontSize: rf(20),
-    color: type === 'dark' ? Colors.WHITE : Colors.VERY_DARK_BLUE,
-    flex: 1,
-  }),
-});
+const styles = StyleSheet.create(
+  ({
+    container: (type) => ({
+      backgroundColor: type === 'dark' ? Colors.VERY_DARK_BLUE : 'transparent',
+      flexDirection: 'row',
+      paddingHorizontal: rw(16),
+      paddingVertical: rh(30),
+      alignItems: 'center',
+      borderBottomLeftRadius: type === 'dark' ? 20 : 0,
+      borderBottomRightRadius: type === 'dark' ? 20 : 0,
+    }),
+    title: (type) => ({
+      textAlign: 'center',
+      fontFamily: FontsType.semiBold,
+      fontSize: rf(20),
+      color: type === 'dark' ? Colors.WHITE : Colors.VERY_DARK_BLUE,
+      flex: 1,
+    }),
+  }: Object),
+);

@@ -2,6 +2,8 @@
 
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
+
 import {Header, Button, Gap, Profile} from '../../components';
 import {Colors} from '../../utils/Colors';
 import {ILUserPhotoNull, ICRemovePhoto, DummyUser} from '../../assets';
@@ -13,23 +15,35 @@ import {
   responsiveFontValue as rf,
 } from '../../utils/Responsive';
 import {FontsType} from '../../utils/Fonts';
+import {ROUTE_NAME} from '../../router';
 
-type Props = {};
+type Props = {
+  navigation: NavigationProp,
+};
 
-const UploadPhoto = ({}: Props) => {
+const UploadPhoto = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
-      <Header title="Upload Photo" />
+      <Header title="Upload Photo" onPress={() => navigation.goBack()} />
       <View style={styles.content}>
         <View style={styles.sectionOne}>
-          <Profile icon="add" profile={DummyUser} />
+          <Profile icon="add" profile={ILUserPhotoNull} />
           <Text style={styles.name}>Shayna Melinda</Text>
           <Text style={styles.job}>Product Designer</Text>
         </View>
         <View>
-          <Button title="Upload and Continue" type="primary" disabled={true} />
+          <Button
+            title="Upload and Continue"
+            type="primary"
+            onPress={() => navigation.replace(ROUTE_NAME.MAIN_APP)}
+          />
           <Gap height={30} />
-          <Link label="Skip for this" textAlign="center" fontSize={16} />
+          <Link
+            label="Skip for this"
+            textAlign="center"
+            fontSize={16}
+            onPress={() => navigation.replace(ROUTE_NAME.MAIN_APP)}
+          />
         </View>
       </View>
     </View>

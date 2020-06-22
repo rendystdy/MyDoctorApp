@@ -15,7 +15,7 @@ type Props = {
   title: String,
   name: String,
   address: String,
-  images: String,
+  images?: Object,
 };
 
 const ListHospitals = ({title, name, address, images}: Props) => {

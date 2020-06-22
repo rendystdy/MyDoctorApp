@@ -8,15 +8,22 @@ import {
   responsiveHeight as rh,
 } from '../../../utils/Responsive';
 
-const Gap = ({width, height}) => {
+type Props = {
+  width?: number,
+  height?: number,
+};
+
+const Gap = ({width, height}: Props) => {
   return <View style={styles.container(width, height)} />;
 };
 
 export default Gap;
 
-const styles = StyleSheet.create({
-  container: (width = 0, height = 0) => ({
-    width: rw(width),
-    height: rh(height),
-  }),
-});
+const styles = StyleSheet.create(
+  ({
+    container: (width = 0, height = 0) => ({
+      width: rw(width),
+      height: rh(height),
+    }),
+  }: Object),
+);

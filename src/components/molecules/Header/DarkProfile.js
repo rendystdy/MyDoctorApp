@@ -15,8 +15,8 @@ import {ICArrowBack, DummyDokter1} from '../../../assets';
 import {Gap, Button} from '../../atoms';
 
 type Props = {
-  title: String,
-  name: String,
+  title?: String,
+  name?: String,
   onPress: Function,
 };
 

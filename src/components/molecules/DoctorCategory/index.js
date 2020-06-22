@@ -13,7 +13,7 @@ import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
 
 type Props = {
-  category: String,
+  category: string,
   onPress: Function,
 };
 

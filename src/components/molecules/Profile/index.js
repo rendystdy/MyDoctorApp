@@ -8,6 +8,8 @@ import {
   DummyUser,
   ICRemovePhoto,
   ICAddPhoto,
+  ICMale,
+  ICFemale,
 } from '../../../assets';
 import {
   responsiveWidth as rw,
@@ -19,10 +21,10 @@ import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
 
 type Props = {
-  name: String,
-  job: String,
-  profile: String,
-  icon: String,
+  name: string,
+  job: string,
+  profile?: Object,
+  icon?: string,
 };
 
 const Profile = ({name, job, profile, icon}: Props) => {
@@ -32,14 +34,18 @@ const Profile = ({name, job, profile, icon}: Props) => {
         return <ICRemovePhoto style={styles.icon} />;
       case 'add':
         return <ICAddPhoto style={styles.icon} />;
+      case 'male':
+        return <ICMale style={styles.icon} />;
+      case 'female':
+        return <ICFemale style={styles.icon} />;
       default:
-        return;
+        return <ICRemovePhoto style={styles.icon} />;
     }
   };
   return (
     <View style={styles.container}>
       <View style={styles.wrapperAvatar}>
-        <Image source={profile} style={styles.profile} />
+        {profile && <Image source={profile} style={styles.profile} />}
         {icon && <Icon />}
       </View>
       {name && <Text style={styles.name}>{name}</Text>}
@@ -61,6 +67,7 @@ const styles = StyleSheet.create({
     borderRadius: rbr(110 / 2),
   },
   name: {
+    marginTop: rh(16),
     fontSize: rf(20),
     color: Colors.VERY_DARK_BLUE,
     lineHeight: 27,

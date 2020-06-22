@@ -12,8 +12,8 @@ import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
 
 type Props = {
-  chatIsMe: String,
-  dateIsMe: String,
+  chatIsMe: string,
+  dateIsMe?: string,
 };
 
 const IsMe = ({chatIsMe, dateIsMe}: Props) => {
