@@ -11,28 +11,33 @@ import {useForm} from '../../utils/useForm';
 import {Firebase} from '../../config';
 
 type Props = {
-  navigation: NavigationProp,
+  navigation: NavigationProp
 };
 
 const Register = ({navigation}: Props) => {
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useForm({
     fullName: '',
     profession: '',
     email: '',
-    password: '',
+    password: ''
   });
 
   const handleContinue = () => {
     console.log('FORM', {form});
+    setLoading(true);
     Firebase.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then((data) => {
         console.log('SUCCESS', data);
+        setForm('reset');
+        setLoading(false);
       })
       .catch((error) => {
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
+        setLoading(false);
         // ...
         console.log({errorCode, errorMessage});
       });
@@ -78,7 +83,7 @@ const Register = ({navigation}: Props) => {
           </ScrollView>
         </View>
       </View>
-      <Loading />
+      {loading && <Loading />}
     </>
   );
 };
@@ -88,10 +93,10 @@ export default Register;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.WHITE,
+    backgroundColor: Colors.WHITE
   },
   content: {
     padding: 40,
-    paddingTop: 0,
-  },
+    paddingTop: 0
+  }
 });
