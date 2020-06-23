@@ -8,7 +8,7 @@ import ListItems from './ListItems';
 import ListHospitals from './ListHospitals';
 import ChatItems from './ChatItems';
 import InputChat from './InputChat';
-import Profile from './Profile';
+// import Profile from './Profile';
 import ProfileItems from './ProfileItems';
 import Loading from './Loading';
 
@@ -23,7 +23,7 @@ export {
   ListHospitals,
   ChatItems,
   InputChat,
-  Profile,
+  // Profile,
   ProfileItems,
   Loading,
 };
