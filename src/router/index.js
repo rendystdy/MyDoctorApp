@@ -14,7 +14,7 @@ import {
   Messages,
   ChooseDoctor,
   Chat,
-  UserProfile,
+  // UserProfile,
   UpdateProfile,
   DoctorProfile,
 } from '../pages';
@@ -130,11 +130,11 @@ const Router = () => {
         component={Chat}
         options={options(ROUTE_NAME.CHAT, false)}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name={ROUTE_NAME.USER_PROFILE}
         component={UserProfile}
         options={options(ROUTE_NAME.USER_PROFILE, false)}
-      />
+      /> */}
       <Stack.Screen
         name={ROUTE_NAME.UPDATE_PROFILE}
         component={UpdateProfile}

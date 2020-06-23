@@ -10,7 +10,7 @@ import Messages from './Messages';
 import Hospitals from './Hospitals';
 import ChooseDoctor from './ChooseDoctor';
 import Chat from './Chat';
-import UserProfile from './UserProfile';
+// import UserProfile from './U';
 import UpdateProfile from './UpdateProfile';
 import DoctorProfile from './DoctorProfile';
 
@@ -25,7 +25,7 @@ export {
   Hospitals,
   ChooseDoctor,
   Chat,
-  UserProfile,
+  // UserProfile,
   UpdateProfile,
   DoctorProfile,
 };

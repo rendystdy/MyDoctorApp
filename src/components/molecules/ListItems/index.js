@@ -8,13 +8,13 @@ import {
   ICAccountCircle,
   ICLanguage,
   ICRatedOutline,
-  ICHelp,
+  ICHelp
 } from '../../../assets';
 import {
   responsiveHeight as rh,
   responsiveWidth as rw,
   responsiveFontValue as rf,
-  responsiveBorderRadius as rbr,
+  responsiveBorderRadius as rbr
 } from '../../../utils/Responsive';
 import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
@@ -25,7 +25,7 @@ type Props = {
   images?: Object,
   type: string,
   onPress: Function,
-  icon?: string,
+  icon?: string
 };
 
 const ListItems = ({name, desc, images, type, onPress, icon}: Props) => {
@@ -33,7 +33,7 @@ const ListItems = ({name, desc, images, type, onPress, icon}: Props) => {
     EDIT_PROFILE: 'edit-profile',
     LANGUAGE: 'language',
     RATED: 'rated',
-    HELP: 'help',
+    HELP: 'help'
   };
   const Icon = () => {
     switch (icon) {
@@ -70,28 +70,28 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.VERY_LIGHT_GRAY,
     padding: 16,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   content: {
-    flex: 1,
+    flex: 1
   },
   image: {
     width: rw(46),
     height: rh(46),
     borderRadius: rbr(46 / 2),
-    marginRight: rw(12),
+    marginRight: rw(12)
   },
   name: {
     fontSize: rf(16),
     color: Colors.VERY_DARK_BLUE,
     fontFamily: FontsType.regular,
-    lineHeight: 22,
+    lineHeight: 22
   },
   chat: {
     fontSize: rf(12),
     color: Colors.DARK_GRAYISH_BLUE,
     fontFamily: FontsType.light,
-    lineHeight: 16,
+    lineHeight: 16
   },
   icon: {
     marginRight: rw(16),

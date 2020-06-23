@@ -9,7 +9,7 @@ import {
   responsiveFontValue as rf,
   responsiveWidth as rw,
   responsiveHeight as rh,
-  responsiveBorderRadius as rbr,
+  responsiveBorderRadius as rbr
 } from '../../../utils/Responsive';
 import {ICArrowBack} from '../../../assets';
 import {Gap, Button} from '../../atoms';
@@ -18,7 +18,7 @@ import DarkProfile from './DarkProfile';
 type Props = {
   title: string,
   onPress: Function,
-  type: string,
+  type: string
 };
 
 const Header = ({title, onPress, type}: Props) => {
@@ -50,14 +50,14 @@ const styles = StyleSheet.create(
       paddingVertical: rh(30),
       alignItems: 'center',
       borderBottomLeftRadius: type === 'dark' ? 20 : 0,
-      borderBottomRightRadius: type === 'dark' ? 20 : 0,
+      borderBottomRightRadius: type === 'dark' ? 20 : 0
     }),
     title: (type) => ({
       textAlign: 'center',
       fontFamily: FontsType.semiBold,
       fontSize: rf(20),
       color: type === 'dark' ? Colors.WHITE : Colors.VERY_DARK_BLUE,
-      flex: 1,
-    }),
-  }: Object),
+      flex: 1
+    })
+  }: Object)
 );

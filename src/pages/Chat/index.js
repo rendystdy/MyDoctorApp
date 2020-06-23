@@ -11,7 +11,7 @@ import {
   responsiveFontValue as rf,
   responsiveWidth as rw,
   responsiveHeight as rh,
-  responsiveBorderRadius as rbr,
+  responsiveBorderRadius as rbr
 } from '../../utils/Responsive';
 
 type Props = {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.WHITE,
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   chatDate: {
     textAlign: 'center',
@@ -64,9 +64,9 @@ const styles = StyleSheet.create({
     fontSize: rf(11),
     color: Colors.DARK_GRAYISH_BLUE,
     lineHeight: 13,
-    marginVertical: rh(20),
+    marginVertical: rh(20)
   },
   content: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });

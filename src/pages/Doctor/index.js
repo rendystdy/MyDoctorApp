@@ -9,12 +9,12 @@ import {
   DoctorCategory,
   RatedDoctor,
   NewsItem,
-  Gap,
+  Gap
 } from '../../components';
 import {
   responsiveWidth as rw,
   responsiveHeight as rh,
-  responsiveFontValue as rf,
+  responsiveFontValue as rf
 } from '../../utils/Responsive';
 import {FontsType} from '../../utils/Fonts';
 import {Colors} from '../../utils/Colors';
@@ -22,12 +22,12 @@ import {
   JSONCategoryDoctor,
   DummyDokter1,
   DummyDokter2,
-  DummyDokter3,
+  DummyDokter3
 } from '../../assets';
 import {ROUTE_NAME} from '../../router';
 
 type Props = {
-  navigation: NavigationProp,
+  navigation: NavigationProp
 };
 
 const Doctor = ({navigation}: Props) => {
@@ -102,13 +102,13 @@ export default Doctor;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.VERY_DARK_BLUE,
+    backgroundColor: Colors.VERY_DARK_BLUE
   },
   secondary: {
     backgroundColor: Colors.WHITE,
     flex: 1,
     borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderBottomRightRadius: 20
   },
   welcome: {
     fontSize: rf(20),
@@ -117,11 +117,11 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: rh(30),
     maxWidth: rw(209),
-    marginBottom: rh(16),
+    marginBottom: rh(16)
   },
   wrapperCategory: {
     marginBottom: rh(30),
-    marginHorizontal: rw(-16),
+    marginHorizontal: rw(-16)
   },
   contentContainerCategory: {paddingLeft: rw(16), paddingRight: rw(6)},
   sectionLabel: {
@@ -129,9 +129,9 @@ const styles = StyleSheet.create({
     fontFamily: FontsType.semiBold,
     color: Colors.VERY_DARK_BLUE,
     lineHeight: 19,
-    marginBottom: rh(16),
+    marginBottom: rh(16)
   },
   wrapperSection: {
-    paddingHorizontal: rw(16),
-  },
+    paddingHorizontal: rw(16)
+  }
 });
