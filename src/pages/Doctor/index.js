@@ -18,7 +18,12 @@ import {
 } from '../../utils/Responsive';
 import {FontsType} from '../../utils/Fonts';
 import {Colors} from '../../utils/Colors';
-import {JSONCategoryDoctor} from '../../assets';
+import {
+  JSONCategoryDoctor,
+  DummyDokter1,
+  DummyDokter2,
+  DummyDokter3,
+} from '../../assets';
 import {ROUTE_NAME} from '../../router';
 
 type Props = {
@@ -60,9 +65,26 @@ const Doctor = ({navigation}: Props) => {
           </View>
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
-            <RatedDoctor />
-            <RatedDoctor />
-            <RatedDoctor />
+            <RatedDoctor
+              name="Alexa Rachel"
+              title="Pediatrician"
+              images={DummyDokter1}
+              onPress={() => {
+                navigation.navigate(ROUTE_NAME.DOCTOR_PROFILE);
+              }}
+            />
+            <RatedDoctor
+              name="Sunny Frank"
+              title="Dentist"
+              images={DummyDokter2}
+              onPress={() => {}}
+            />
+            <RatedDoctor
+              name="Poe Minn"
+              title="Podiatrist"
+              images={DummyDokter3}
+              onPress={() => {}}
+            />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
           <NewsItem />

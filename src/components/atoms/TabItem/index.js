@@ -58,16 +58,20 @@ const TabItem = ({title, isFocused, onPress, onLongPress}: Props) => {
 
 export default TabItem;
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-  },
-  title: (isFocused) => ({
-    fontSize: rf(10),
-    textAlign: 'center',
-    fontFamily: FontsType.semiBold,
-    color: isFocused ? Colors.STRONG_CYAN : Colors.MOSTLY_DESATURATED_DARK_BLUE,
-    lineHeight: 14,
-    marginTop: rh(4),
-  }),
-});
+const styles = StyleSheet.create(
+  ({
+    container: {
+      alignItems: 'center',
+    },
+    title: (isFocused) => ({
+      fontSize: rf(10),
+      textAlign: 'center',
+      fontFamily: FontsType.semiBold,
+      color: isFocused
+        ? Colors.STRONG_CYAN
+        : Colors.MOSTLY_DESATURATED_DARK_BLUE,
+      lineHeight: 14,
+      marginTop: rh(4),
+    }),
+  }: Object),
+);

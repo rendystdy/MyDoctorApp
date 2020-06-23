@@ -3,12 +3,18 @@
 /* eslint-disable no-use-before-define */
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
+
 import {ILLogo} from '../../assets';
 import {FontsType} from '../../utils/Fonts';
 import {ROUTE_NAME} from '../../router';
-import { Colors } from '../../utils/Colors';
+import {Colors} from '../../utils/Colors';
 
-const Splash = ({navigation}) => {
+type Props = {
+  navigation: NavigationProp,
+};
+
+const Splash = ({navigation}: Props) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.replace(ROUTE_NAME.GET_STARTED);

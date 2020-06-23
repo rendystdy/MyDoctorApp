@@ -14,7 +14,7 @@ import {FontsType} from '../../../utils/Fonts';
 import {DummyDokter1} from '../../../assets';
 
 type Props = {
-  chatOther: String,
+  chatOther: string,
 };
 
 const Other = ({chatOther}: Props) => {

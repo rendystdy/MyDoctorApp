@@ -15,10 +15,10 @@ import Other from './Other';
 
 type Props = {
   isMe: Boolean,
-  chatIsMe: String,
-  chatOther: String,
-  dateOther: String,
-  dateIsMe: String,
+  chatIsMe: string,
+  chatOther: string,
+  dateOther: string,
+  dateIsMe: string,
 };
 
 const ChatItems = ({isMe, chatIsMe, chatOther, dateIsMe, dateOther}: Props) => {

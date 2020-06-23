@@ -16,6 +16,8 @@ import ICLanguage from './translate_24px_outlined.svg';
 import ICHelp from './description_24px_outlined.svg';
 import ICRatedOutline from './star_outline_24px_outlined.svg';
 import ICAccountCircle from './account_circle_24px_outlined.svg';
+import ICMale from './icon_male.svg';
+import ICFemale from './icon_female.svg';
 
 export {
   ICArrowBack,
@@ -36,4 +38,6 @@ export {
   ICHelp,
   ICRatedOutline,
   ICAccountCircle,
+  ICMale,
+  ICFemale,
 };

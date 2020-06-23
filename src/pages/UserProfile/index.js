@@ -13,7 +13,7 @@ type Props = {
   navigation: NavigationProp,
 };
 
-const UserProfile = ({navigation}) => {
+const UserProfile = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
       <Header title="Profile" onPress={() => navigation.goBack()} />

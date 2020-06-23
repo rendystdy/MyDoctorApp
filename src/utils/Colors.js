@@ -9,4 +9,5 @@ export const Colors = {
   MOSTLY_DESATURATED_DARK_BLUE: 'rgb(73,90,117)',
   LIGHT_GRAYISH_CYAN: 'rgb(237,252,253)',
   STRONG_BLUE: 'rgb(0,102,203)',
+  BLACK_TRANSPARENT: 'rgba(0, 0, 0, 0.5)',
 };
