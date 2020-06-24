@@ -89,7 +89,7 @@ const options = (routeName, show) => {
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName={ROUTE_NAME.SPLASH}>
+    <Stack.Navigator initialRouteName={ROUTE_NAME.DOCTOR}>
       <Stack.Screen
         name={ROUTE_NAME.SPLASH}
         component={Splash}

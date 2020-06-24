@@ -1,6 +1,6 @@
 // @flow
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, FlatList, ScrollView} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 
@@ -9,12 +9,12 @@ import {
   DoctorCategory,
   RatedDoctor,
   NewsItem,
-  Gap,
+  Gap
 } from '../../components';
 import {
   responsiveWidth as rw,
   responsiveHeight as rh,
-  responsiveFontValue as rf,
+  responsiveFontValue as rf
 } from '../../utils/Responsive';
 import {FontsType} from '../../utils/Fonts';
 import {Colors} from '../../utils/Colors';
@@ -23,17 +23,32 @@ import {
   DummyDokter1,
   DummyDokter2,
   DummyDokter3,
+  ILUserPhotoNull
 } from '../../assets';
 import {ROUTE_NAME} from '../../router';
+import {getData} from '../../utils/localStorage';
 
 type Props = {
-  navigation: NavigationProp,
+  navigation: NavigationProp
 };
 
 const Doctor = ({navigation}: Props) => {
   const handleChooseDoctor = () => {
     navigation.navigate(ROUTE_NAME.CHOOSE_DOCTOR);
   };
+  const [profile, setProfile] = useState({
+    fullName: '',
+    profession: '',
+    photo: ILUserPhotoNull
+  });
+  console.log('DATA USER', profile);
+
+  useEffect(() => {
+    getData('user').then((res) => {
+      const {fullName, profession, photo} = res;
+      setProfile({fullName, profession, photo: {uri: photo}});
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -43,6 +58,9 @@ const Doctor = ({navigation}: Props) => {
           <View style={styles.wrapperSection}>
             <HomeProfile
               onPress={() => navigation.navigate(ROUTE_NAME.USER_PROFILE)}
+              profile={profile.photo}
+              name={profile.fullName}
+              desc={profile.profession}
             />
             <Text style={styles.welcome}>
               Mau konsultasi dengan siapa hari ini?
@@ -102,13 +120,13 @@ export default Doctor;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.VERY_DARK_BLUE,
+    backgroundColor: Colors.VERY_DARK_BLUE
   },
   secondary: {
     backgroundColor: Colors.WHITE,
     flex: 1,
     borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderBottomRightRadius: 20
   },
   welcome: {
     fontSize: rf(20),
@@ -117,11 +135,11 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     marginTop: rh(30),
     maxWidth: rw(209),
-    marginBottom: rh(16),
+    marginBottom: rh(16)
   },
   wrapperCategory: {
     marginBottom: rh(30),
-    marginHorizontal: rw(-16),
+    marginHorizontal: rw(-16)
   },
   contentContainerCategory: {paddingLeft: rw(16), paddingRight: rw(6)},
   sectionLabel: {
@@ -129,9 +147,9 @@ const styles = StyleSheet.create({
     fontFamily: FontsType.semiBold,
     color: Colors.VERY_DARK_BLUE,
     lineHeight: 19,
-    marginBottom: rh(16),
+    marginBottom: rh(16)
   },
   wrapperSection: {
-    paddingHorizontal: rw(16),
-  },
+    paddingHorizontal: rw(16)
+  }
 });

@@ -10,4 +10,5 @@ export const Colors = {
   LIGHT_GRAYISH_CYAN: 'rgb(237,252,253)',
   STRONG_BLUE: 'rgb(0,102,203)',
   BLACK_TRANSPARENT: 'rgba(0, 0, 0, 0.5)',
+  SOFT_RED: 'rgb(224,99,121)',
 };

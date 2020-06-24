@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
 import {
   DummyThumbnail1,
@@ -9,13 +9,13 @@ import {
   ICRemovePhoto,
   ICAddPhoto,
   ICMale,
-  ICFemale,
+  ICFemale
 } from '../../../assets';
 import {
   responsiveWidth as rw,
   responsiveHeight as rh,
   responsiveBorderRadius as rbr,
-  responsiveFontValue as rf,
+  responsiveFontValue as rf
 } from '../../../utils/Responsive';
 import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
@@ -25,9 +25,10 @@ type Props = {
   job: string,
   profile?: Object,
   icon?: string,
+  onPress?: Function
 };
 
-const Profile = ({name, job, profile, icon}: Props) => {
+const Profile = ({name, job, profile, icon, onPress}: Props) => {
   const Icon = () => {
     switch (icon) {
       case 'remove':
@@ -43,14 +44,14 @@ const Profile = ({name, job, profile, icon}: Props) => {
     }
   };
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.wrapperAvatar}>
         {profile && <Image source={profile} style={styles.profile} />}
         {icon && <Icon />}
       </View>
       {name && <Text style={styles.name}>{name}</Text>}
       {job && <Text style={styles.job}>{job}</Text>}
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -59,12 +60,12 @@ export default Profile;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   profile: {
     width: rw(110),
     height: rh(110),
-    borderRadius: rbr(110 / 2),
+    borderRadius: rbr(110 / 2)
   },
   name: {
     marginTop: rh(16),
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     color: Colors.VERY_DARK_BLUE,
     lineHeight: 27,
     textAlign: 'center',
-    fontFamily: FontsType.semiBold,
+    fontFamily: FontsType.semiBold
   },
   job: {
     fontSize: rf(16),
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     textAlign: 'center',
     fontFamily: FontsType.regular,
-    marginTop: rh(2),
+    marginTop: rh(2)
   },
   wrapperAvatar: {
     width: rw(130),
@@ -89,11 +90,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.VERY_LIGHT_GRAY,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   icon: {
     position: 'absolute',
     bottom: 8,
-    right: 8,
-  },
+    right: 8
+  }
 });

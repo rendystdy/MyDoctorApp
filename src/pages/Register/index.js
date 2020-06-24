@@ -3,12 +3,14 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 import {Header, Input, Button, Gap, Loading} from '../../components';
 import {Colors} from '../../utils/Colors';
 import {ROUTE_NAME} from '../../router';
 import {useForm} from '../../utils/useForm';
 import {Firebase} from '../../config';
+import {storeData} from '../../utils/localStorage';
 
 type Props = {
   navigation: NavigationProp
@@ -24,22 +26,40 @@ const Register = ({navigation}: Props) => {
   });
 
   const handleContinue = () => {
-    console.log('FORM', {form});
     setLoading(true);
     Firebase.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then((data) => {
-        console.log('SUCCESS', data);
         setForm('reset');
         setLoading(false);
+
+        const {
+          user: {uid}
+        } = data;
+
+        const payload = {
+          userId: uid,
+          fullName: form.fullName,
+          profession: form.profession,
+          email: form.email
+        };
+
+        Firebase.database().ref(`users/${uid}/`).set(payload);
+        storeData('user', payload);
+        const params = payload;
+        navigation.navigate(ROUTE_NAME.UPLOAD_PHOTO, params);
       })
       .catch((error) => {
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
         setLoading(false);
-        // ...
-        console.log({errorCode, errorMessage});
+        showMessage({
+          message: errorMessage,
+          type: 'default',
+          backgroundColor: Colors.SOFT_RED,
+          color: Colors.WHITE
+        });
       });
   };
 
