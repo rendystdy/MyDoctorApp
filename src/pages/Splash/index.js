@@ -9,16 +9,25 @@ import {ILLogo} from '../../assets';
 import {FontsType} from '../../utils/Fonts';
 import {ROUTE_NAME} from '../../router';
 import {Colors} from '../../utils/Colors';
+import {Firebase} from '../../config';
 
 type Props = {
-  navigation: NavigationProp,
+  navigation: NavigationProp
 };
 
 const Splash = ({navigation}: Props) => {
   useEffect(() => {
-    setTimeout(() => {
-      navigation.replace(ROUTE_NAME.GET_STARTED);
-    }, 3000);
+    const unsubscribe = Firebase.auth().onAuthStateChanged((user) => {
+      setTimeout(() => {
+        if (user) {
+          navigation.replace(ROUTE_NAME.MAIN_APP);
+        } else {
+          navigation.replace(ROUTE_NAME.GET_STARTED);
+        }
+      }, 3000);
+    });
+
+    return () => unsubscribe();
   }, [navigation]);
 
   return (
@@ -35,8 +44,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: FontsType.semiBold,
     color: Colors.VERY_DARK_BLUE,
-    marginTop: 20,
-  },
+    marginTop: 20
+  }
 });
 
 export default Splash;

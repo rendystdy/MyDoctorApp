@@ -41,7 +41,6 @@ const Doctor = ({navigation}: Props) => {
     profession: '',
     photo: ILUserPhotoNull
   });
-  console.log('DATA USER', profile);
 
   useEffect(() => {
     getData('user').then((res) => {

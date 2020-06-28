@@ -43,15 +43,29 @@ const Profile = ({name, job, profile, icon, onPress}: Props) => {
         return <ICRemovePhoto style={styles.icon} />;
     }
   };
+
+  if (icon) {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.wrapperAvatar} onPress={onPress}>
+          {profile && <Image source={profile} style={styles.profile} />}
+          {icon && <Icon />}
+        </TouchableOpacity>
+        {name && <Text style={styles.name}>{name}</Text>}
+        {job && <Text style={styles.job}>{job}</Text>}
+      </View>
+    );
+  }
+
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <View style={styles.container}>
       <View style={styles.wrapperAvatar}>
         {profile && <Image source={profile} style={styles.profile} />}
         {icon && <Icon />}
       </View>
       {name && <Text style={styles.name}>{name}</Text>}
       {job && <Text style={styles.job}>{job}</Text>}
-    </TouchableOpacity>
+    </View>
   );
 };
 

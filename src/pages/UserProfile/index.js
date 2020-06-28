@@ -1,28 +1,67 @@
 // @flow
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 
 import {Header, Profile, ListItems, Gap} from '../../components';
 import {Colors} from '../../utils/Colors';
 import {ROUTE_NAME} from '../../router';
-import {DummyUser} from '../../assets';
+import {ILUserPhotoNull} from '../../assets';
+import {getData} from '../../utils/localStorage';
+import {Firebase} from '../../config';
+import {showMessage} from 'react-native-flash-message';
 
 type Props = {
-  navigation: NavigationProp,
+  navigation: NavigationProp
 };
 
 const UserProfile = ({navigation}: Props) => {
+  const [profile, setProfile] = useState({
+    photo: ILUserPhotoNull,
+    fullName: '',
+    profession: ''
+  });
+
+  useEffect(() => {
+    getData('user').then((res) => {
+      const {fullName, profession, photo} = res;
+      setProfile({
+        fullName: fullName,
+        profession: profession,
+        photo: {uri: photo}
+      });
+    });
+  }, []);
+
+  const handleSignOut = () => {
+    Firebase.auth()
+      .signOut()
+      .then(() => {
+        console.log('success sign out');
+        navigation.replace(ROUTE_NAME.GET_STARTED);
+      })
+      .catch((error) => {
+        showMessage({
+          message: error.message,
+          type: 'default',
+          backgroundColor: Colors.SOFT_RED,
+          color: Colors.WHITE
+        });
+      });
+  };
+
   return (
     <View style={styles.container}>
       <Header title="Profile" onPress={() => navigation.goBack()} />
       <Gap height={10} />
-      <Profile
-        profile={DummyUser}
-        name="Shayna Melinda"
-        job="Product Designer"
-      />
+      {profile.fullName.length > 0 && (
+        <Profile
+          profile={profile.photo}
+          name={profile.fullName}
+          job={profile.profession}
+        />
+      )}
       <Gap height={14} />
       <ListItems
         type="next"
@@ -48,6 +87,7 @@ const UserProfile = ({navigation}: Props) => {
         name="Help Center"
         desc="Read our guidelines"
         icon="help"
+        onPress={handleSignOut}
       />
     </View>
   );
@@ -58,6 +98,6 @@ export default UserProfile;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.WHITE,
-    flex: 1,
-  },
+    flex: 1
+  }
 });

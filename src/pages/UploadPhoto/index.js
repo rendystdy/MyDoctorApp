@@ -46,7 +46,6 @@ const UploadPhoto = ({route, navigation}: Props) => {
   const handleGetImage = () => {
     ImagePicker.showImagePicker(options, (response) => {
       if (response.didCancel) {
-        console.log('User cancelled image picker');
         showMessage({
           message: 'Opps, sepertinya anda tidak memilih fotonya ?',
           type: 'default',
