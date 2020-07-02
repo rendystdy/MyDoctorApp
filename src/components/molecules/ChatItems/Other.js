@@ -7,7 +7,7 @@ import {
   responsiveHeight as rh,
   responsiveFontValue as rf,
   responsiveWidth as rw,
-  responsiveBorderRadius as rbr,
+  responsiveBorderRadius as rbr
 } from '../../../utils/Responsive';
 import {Colors} from '../../../utils/Colors';
 import {FontsType} from '../../../utils/Fonts';
@@ -15,17 +15,19 @@ import {DummyDokter1} from '../../../assets';
 
 type Props = {
   chatOther: string,
+  dateOther: string,
+  photo: Object
 };
 
-const Other = ({chatOther}: Props) => {
+const Other = ({chatOther, dateOther, photo}: Props) => {
   return (
     <View style={styles.container}>
-      <Image source={DummyDokter1} style={styles.profile} />
+      <Image source={photo} style={styles.profile} />
       <View>
         <View style={styles.content}>
           <Text style={styles.text}>{chatOther}</Text>
         </View>
-        <Text style={styles.date}>4.45 AM</Text>
+        <Text style={styles.date}>{dateOther}</Text>
       </View>
     </View>
   );
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
     marginBottom: rh(20),
     paddingLeft: rw(16),
     alignItems: 'flex-end',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   content: {
     backgroundColor: Colors.STRONG_CYAN,
@@ -46,25 +48,25 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: rbr(0),
     maxWidth: '80%',
     padding: 12,
-    paddingRight: rw(18),
+    paddingRight: rw(18)
   },
   text: {
     fontSize: rh(14),
     color: Colors.WHITE,
     lineHeight: 17,
-    fontFamily: FontsType.regular,
+    fontFamily: FontsType.regular
   },
   date: {
     fontSize: rh(11),
     color: Colors.DARK_GRAYISH_BLUE,
     lineHeight: 13,
     fontFamily: FontsType.regular,
-    marginTop: rh(8),
+    marginTop: rh(8)
   },
   profile: {
     width: rw(30),
     height: rh(30),
     borderRadius: rbr(30 / 2),
-    marginRight: rw(12),
-  },
+    marginRight: rw(12)
+  }
 });

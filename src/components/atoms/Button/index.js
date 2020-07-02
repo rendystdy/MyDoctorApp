@@ -13,12 +13,12 @@ type Props = {
   type?: string,
   onPress?: Function,
   icon?: string,
-  disabled?: boolean,
+  disabled?: boolean
 };
 
 const Button = ({type, title, onPress, icon, disabled}: Props) => {
   if (type === 'btn-icon-send') {
-    return <BtnIconSend disabled={disabled} />;
+    return <BtnIconSend disabled={disabled} onPress={onPress} />;
   }
   if (type === 'icon-only') {
     return <IconOnly icon={icon} onPress={onPress} />;
@@ -46,7 +46,7 @@ const styles = StyleSheet.create(
           : Colors.STRONG_CYAN,
       paddingVertical: 10,
       alignItems: 'center',
-      borderRadius: 10,
+      borderRadius: 10
     }),
     title: (type, disabled) => ({
       color:
@@ -57,7 +57,7 @@ const styles = StyleSheet.create(
           : Colors.WHITE,
       textAlign: 'center',
       fontSize: 18,
-      fontFamily: FontsType.semiBold,
-    }),
-  }: Object),
+      fontFamily: FontsType.semiBold
+    })
+  }: Object)
 );

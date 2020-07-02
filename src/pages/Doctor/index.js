@@ -1,8 +1,16 @@
 // @flow
 
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, FlatList, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  ScrollView,
+  ActivityIndicator
+} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {
   HomeProfile,
@@ -19,7 +27,6 @@ import {
 import {FontsType} from '../../utils/Fonts';
 import {Colors} from '../../utils/Colors';
 import {
-  JSONCategoryDoctor,
   DummyDokter1,
   DummyDokter2,
   DummyDokter3,
@@ -27,27 +34,111 @@ import {
 } from '../../assets';
 import {ROUTE_NAME} from '../../router';
 import {getData} from '../../utils/localStorage';
+import {Firebase} from '../../config';
+import {showError} from '../../utils/showMessage';
+import {set, log} from 'react-native-reanimated';
 
 type Props = {
   navigation: NavigationProp
 };
 
 const Doctor = ({navigation}: Props) => {
-  const handleChooseDoctor = () => {
-    navigation.navigate(ROUTE_NAME.CHOOSE_DOCTOR);
+  const handleChooseDoctor = (item) => {
+    navigation.navigate(ROUTE_NAME.CHOOSE_DOCTOR, item);
   };
   const [profile, setProfile] = useState({
     fullName: '',
     profession: '',
     photo: ILUserPhotoNull
   });
+  const [news, setNews] = useState([]);
+  const [categoryDoctor, setCategoryDoctor] = useState([]);
+  const [doctors, setDoctors] = useState([]);
+  const loading = useSelector((state) => state.loading);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getData('user').then((res) => {
-      const {fullName, profession, photo} = res;
-      setProfile({fullName, profession, photo: {uri: photo}});
+    navigation.addListener('focus', () => {
+      getUserData();
     });
-  }, []);
+    getNews();
+    getCategoryDoctor();
+    getTopRatedDoctors();
+  }, [navigation]);
+
+  const getTopRatedDoctors = () => {
+    dispatch({type: 'SET_LOADING', value: true});
+    Firebase.database()
+      .ref('doctors')
+      .orderByChild('rate')
+      .limitToLast(3)
+      .once('value')
+      .then((res) => {
+        if (res.val()) {
+          dispatch({type: 'SET_LOADING', value: false});
+          const oldData = res.val();
+          const data = [];
+          Object.keys(oldData).map((key) => {
+            data.push({
+              id: key,
+              data: oldData[key]
+            });
+          });
+          setDoctors(data);
+        }
+      })
+      .catch((error) => {
+        dispatch({type: 'SET_LOADING', value: false});
+        showError(error.message);
+      });
+  };
+
+  const getNews = () => {
+    dispatch({type: 'SET_LOADING', value: true});
+    Firebase.database()
+      .ref('news/')
+      .once('value')
+      .then((res) => {
+        if (res.val()) {
+          dispatch({type: 'SET_LOADING', value: false}); 
+          const data = res.val();
+          const filterData = data.filter((el) => el !== null);
+          setNews(filterData);
+        }
+      })
+      .catch((error) => {
+        dispatch({type: 'SET_LOADING', value: false});
+        showError(error.message);
+      });
+  };
+
+  const getCategoryDoctor = () => {
+    dispatch({type: 'SET_LOADING', value: true});
+    Firebase.database()
+      .ref('category_doc/')
+      .once('value')
+      .then((res) => {
+        if (res.val()) {
+          dispatch({type: 'SET_LOADING', value: false});
+          const data = res.val();
+          const filterData = data.filter((el) => el !== null);
+
+          setCategoryDoctor(filterData);
+        }
+      })
+      .catch((error) => {
+        dispatch({type: 'SET_LOADING', value: false});
+        showError(error.message);
+      });
+  };
+
+  const getUserData = () => {
+    getData('user').then((res) => {
+      const data = res;
+      data.photo = res?.photo?.length > 1 ? {uri: res.photo} : ILUserPhotoNull;
+      setProfile(res);
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -68,45 +159,47 @@ const Doctor = ({navigation}: Props) => {
               <FlatList
                 contentContainerStyle={styles.contentContainerCategory}
                 showsHorizontalScrollIndicator={false}
-                data={JSONCategoryDoctor.data}
+                data={categoryDoctor}
                 horizontal
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({item}) => (
-                  <DoctorCategory
-                    category={item.category}
-                    onPress={handleChooseDoctor}
-                  />
-                )}
+                renderItem={({item}) => {
+                  return (
+                    <DoctorCategory
+                      category={item.category}
+                      onPress={() => handleChooseDoctor(item)}
+                    />
+                  );
+                }}
               />
             </View>
           </View>
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
-            <RatedDoctor
-              name="Alexa Rachel"
-              title="Pediatrician"
-              images={DummyDokter1}
-              onPress={() => {
-                navigation.navigate(ROUTE_NAME.DOCTOR_PROFILE);
-              }}
-            />
-            <RatedDoctor
-              name="Sunny Frank"
-              title="Dentist"
-              images={DummyDokter2}
-              onPress={() => {}}
-            />
-            <RatedDoctor
-              name="Poe Minn"
-              title="Podiatrist"
-              images={DummyDokter3}
-              onPress={() => {}}
-            />
+            {doctors.map((item) => {
+              return (
+                <RatedDoctor
+                  key={item.id}
+                  name={item.data.fullName}
+                  title={item.data.category}
+                  images={{uri: item.data.photo}}
+                  onPress={() => {
+                    navigation.navigate(ROUTE_NAME.DOCTOR_PROFILE, item);
+                  }}
+                />
+              );
+            })}
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
-          <NewsItem />
-          <NewsItem />
-          <NewsItem />
+          {news.map((item) => {
+            return (
+              <NewsItem
+                key={item.id}
+                title={item.title}
+                image={{uri: item.image}}
+                date={item.date}
+              />
+            );
+          })}
           <Gap height={30} />
         </ScrollView>
       </View>

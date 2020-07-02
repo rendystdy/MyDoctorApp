@@ -7,16 +7,17 @@ import {Colors} from '../../../utils/Colors';
 import {
   responsiveBorderRadius as rbr,
   responsiveWidth as rw,
-  responsiveHeight as rh,
+  responsiveHeight as rh
 } from '../../../utils/Responsive';
 
 type Props = {
   disabled?: boolean,
+  onPress: Function
 };
 
-const BtnIconSend = ({disabled}: Props) => {
+const BtnIconSend = ({disabled, onPress}: Props) => {
   return (
-    <TouchableOpacity style={styles.container(disabled)}>
+    <TouchableOpacity style={styles.container(disabled)} onPress={onPress}>
       {disabled ? <ICSendInactive /> : <ICSend />}
     </TouchableOpacity>
   );
@@ -36,7 +37,7 @@ const styles = StyleSheet.create(
       paddingTop: 3,
       paddingRight: 3,
       paddingBottom: 8,
-      paddingLeft: 8,
-    }),
-  }: Object),
+      paddingLeft: 8
+    })
+  }: Object)
 );

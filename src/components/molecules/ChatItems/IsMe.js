@@ -22,7 +22,7 @@ const IsMe = ({chatIsMe, dateIsMe}: Props) => {
       <View style={styles.content}>
         <Text style={styles.text}>{chatIsMe}</Text>
       </View>
-      <Text style={styles.date}>4.20 AM</Text>
+      <Text style={styles.date}>{dateIsMe}</Text>
     </View>
   );
 };

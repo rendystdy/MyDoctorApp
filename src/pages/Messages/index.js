@@ -1,6 +1,6 @@
 // @flow
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 
@@ -8,52 +8,87 @@ import {ListItems} from '../../components';
 import {
   responsiveWidth as rw,
   responsiveHeight as rh,
-  responsiveFontValue as rf,
+  responsiveFontValue as rf
 } from '../../utils/Responsive';
 import {Colors} from '../../utils/Colors';
 import {FontsType} from '../../utils/Fonts';
 import {DummyDokter1, DummyDokter2, DummyDokter3} from '../../assets';
 import {ROUTE_NAME} from '../../router';
+import {Firebase} from '../../config';
+import {getData} from '../../utils/localStorage';
 
 type Props = {
-  navigation: NavigationProp,
+  navigation: NavigationProp
 };
 
 const Messages = ({navigation}: Props) => {
-  const [doctors, setDoctors] = useState([
-    {
-      id: 1,
-      name: 'Alexander Jannie',
-      desc: 'Baik ibu, terima kasih banyak atas wakt...',
-      images: DummyDokter1,
-    },
-    {
-      id: 2,
-      name: 'Nairobi Putri Hayza',
-      desc: 'Oh tentu saja tidak karena jeruk it...',
-      images: DummyDokter2,
-    },
-    {
-      id: 3,
-      name: 'John McParker Steve',
-      desc: 'Oke menurut pak dokter bagaimana unt...',
-      images: DummyDokter3,
-    },
-  ]);
+  const [user, setUser] = useState({});
+  const [historyChat, setHistoryChat] = useState([]);
+
+  useEffect(() => {
+    getDataUserFromLocal();
+    getHistoryChat();
+  }, [user.userId]);
+
+  const getDataUserFromLocal = () => {
+    getData('user').then((res) => {
+      setUser(res);
+    });
+  };
+
+  const getHistoryChat = () => {
+    const rootDB = Firebase.database().ref();
+    const base_url_history_chat = `messages/${user.userId}/`;
+    const messageDB = rootDB.child(base_url_history_chat);
+
+    messageDB.on('value', async (snapshot) => {
+      if (snapshot.val()) {
+        const oldData = snapshot.val();
+        const data = [];
+
+        const promises = await Object.keys(oldData).map(async (item) => {
+          const urlUidDoctor = `doctors/${oldData[item].uidPartner}`;
+          const detailDoctor = await rootDB.child(urlUidDoctor).once('value');
+
+          data.push({
+            id: item,
+            detailDoctor: detailDoctor.val(),
+            ...oldData[item]
+          });
+        });
+
+        await Promise.all(promises);
+
+        setHistoryChat(data);
+      }
+    });
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.secondaryContainer}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={styles.title}>Messages</Text>
-          {doctors.map((item) => {
+          {historyChat.map((item) => {
+            const {
+              id,
+              lastContentChat,
+              detailDoctor: {fullName, photo, uid, category},
+              detailDoctor
+            } = item;
+
+            const dataDoctor = {
+              uid: uid,
+              ...detailDoctor
+            };
+
             return (
               <ListItems
-                key={item.id}
-                name={item.name}
-                desc={item.desc}
-                images={item.images}
-                onPress={() => navigation.navigate(ROUTE_NAME.CHAT)}
+                key={id}
+                name={fullName}
+                desc={lastContentChat}
+                images={{uri: photo}}
+                onPress={() => navigation.navigate(ROUTE_NAME.CHAT, dataDoctor)}
               />
             );
           })}
@@ -68,13 +103,13 @@ export default Messages;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.VERY_DARK_BLUE,
+    backgroundColor: Colors.VERY_DARK_BLUE
   },
   secondaryContainer: {
     flex: 1,
     backgroundColor: Colors.WHITE,
     borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderBottomRightRadius: 20
   },
   // wrapperSection: {
   //   marginHorizontal: rw(16),
@@ -86,6 +121,6 @@ const styles = StyleSheet.create({
     color: Colors.VERY_DARK_BLUE,
     fontFamily: FontsType.semiBold,
     marginLeft: rw(16),
-    marginTop: rh(30),
-  },
+    marginTop: rh(30)
+  }
 });

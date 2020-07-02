@@ -38,7 +38,6 @@ const UserProfile = ({navigation}: Props) => {
     Firebase.auth()
       .signOut()
       .then(() => {
-        console.log('success sign out');
         navigation.replace(ROUTE_NAME.GET_STARTED);
       })
       .catch((error) => {

@@ -51,7 +51,7 @@ const UpdateProfile = ({navigation}: Props) => {
   useEffect(() => {
     getData('user').then((res) => {
       const {photo} = res;
-
+      
       setPhoto({uri: photo});
       setProfile(res);
     });
@@ -94,7 +94,6 @@ const UpdateProfile = ({navigation}: Props) => {
             dispatch({type: 'SET_LOADING', value: false});
           })
           .catch((error) => {
-            console.log(error.message);
             dispatch({type: 'SET_LOADING', value: false});
             showError(error.message);
           });

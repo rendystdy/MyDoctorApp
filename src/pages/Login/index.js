@@ -42,11 +42,11 @@ const Login = ({navigation}: Props) => {
         Firebase.database()
           .ref(`users/${uid}/`)
           .once('value')
-          .then((res) => {
+          .then((resDb) => {
             setForm('reset');
             dispatch({type: 'SET_LOADING', value: false});
-            if (res.val()) {
-              storeData('user', res.val());
+            if (resDb.val()) {
+              storeData('user', resDb.val());
               navigation.replace(ROUTE_NAME.MAIN_APP);
             }
           })
@@ -66,8 +66,6 @@ const Login = ({navigation}: Props) => {
         dispatch({type: 'SET_LOADING', value: false});
         showError(errorMessage);
       });
-
-    // navigation.replace(ROUTE_NAME.MAIN_APP);
   };
 
   return (

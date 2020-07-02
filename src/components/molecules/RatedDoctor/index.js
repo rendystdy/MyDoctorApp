@@ -8,18 +8,19 @@ import {
   responsiveBorderRadius as rbr,
   responsiveHeight as rh,
   responsiveWidth as rw,
-  responsiveFontValue as rf,
+  responsiveFontValue as rf
 } from '../../../utils/Responsive';
 import {FontsType} from '../../../utils/Fonts';
 
 type Props = {
-  name: String,
-  title: String,
+  name: string,
+  title: string,
   onPress: Function,
-  images: String,
+  images: object
 };
 
 const RatedDoctor = ({name, title, onPress, images}: Props) => {
+  const rated = [];
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={images} style={styles.images} />
@@ -46,26 +47,26 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: rh(16),
+    paddingBottom: rh(16)
   },
   images: {
     width: rw(50),
     height: rh(50),
     borderRadius: rbr(50 / 2),
-    marginRight: rw(12),
+    marginRight: rw(12)
   },
   name: {
     fontSize: rf(16),
     fontFamily: FontsType.semiBold,
     color: Colors.VERY_DARK_BLUE,
-    lineHeight: 22,
+    lineHeight: 22
   },
   title: {
     fontSize: rf(12),
     fontFamily: FontsType.regular,
     color: Colors.VERY_DARK_BLUE,
-    lineHeight: 16,
+    lineHeight: 16
   },
   wrapper: {flex: 1},
-  wrapperStarRated: {flexDirection: 'row', alignItems: 'center'},
+  wrapperStarRated: {flexDirection: 'row', alignItems: 'center'}
 });
